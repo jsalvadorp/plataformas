@@ -65,7 +65,8 @@ else
 end
 
 fprintf('\n *** best fitness found = %f ***\n', best)
-plot(X,prom+desv,X,prom,X,prom-desv)
+% plot(X,(prom+desv),X,prom,X,(prom-desv))
+plot(X,-(prom+desv),X,-prom,X,-(prom-desv))
 legend('average + std dev','average','average - std dev',0)
 %%%%%   If you prefer to plot min, average, and max uncomment the 
 %%%%%   following two lines and comment the previous two lines

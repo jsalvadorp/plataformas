@@ -1,28 +1,28 @@
 function plataformas(repeticiones, generaciones, prob_mut, prob_cross, pop_size)
 
-setenv("GNUTERM", "X11");
+% setenv GNUTERM X11
 
-pozos = [1,2;
-2,1;
-3,1;
-2,2;
-3,2;
-3,3;
-4,3;
-4,4;
-6,4;
-4,5;
-6,6;
-8,6;
-4,7;
-8,7;
-4,8;
-6,8;
-10,8;
-6,9;
-8,9;
-10,9
-];
+pozos = [1,1;
+				 2,1;
+				 3,1;
+				 2,2;
+				 3,2;
+				 3,3;
+				 4,3;
+				 4,4;
+				 6,4;
+				 4,5;
+				 6,6;
+				 8,6;
+				 4,7;
+				 8,7;
+				 4,8;
+				 6,8;
+				 10,8;
+				 6,9;
+				 8,9;
+				 10,9
+				 ];
 
 plats_pozos = ...
 				{[1,2,3],
@@ -45,6 +45,7 @@ plats_pozos = ...
 				 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]};
 
 num_plats = length(plats_pozos);
+num_pozos = length(pozos);
 
 c = [10, 19, 27, 34, 40, 45, 49, 52, 54, -1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 20];
 
@@ -52,6 +53,7 @@ plats_num_pozos = cellfun("length", plats_pozos);
 
 a = 1;
 d = 0.5;
+kill_number = 1000000;
 
 
 
@@ -66,7 +68,9 @@ plats_costos = arrayfun(costo_plat_f, (1:num_plats));
 % plataformas_cost1(num_plats, plats_costos, 7)
 
 % MAXIMIZA O MINIMIZA? invertir signo
-fcnObj = @(x) -plataformas_cost1(num_plats, plats_costos, x);
+
+
+fcnObj = @(x) -plataformas_cost1(num_plats, num_pozos, plats_costos, x, plats_num_pozos, plats_pozos, kill_number);
 
 %% simulacion
 
